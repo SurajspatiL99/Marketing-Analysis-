@@ -239,7 +239,7 @@ CREATE VIEW us_youtubers AS
 
 -- 2.
 SELECT
-    CAST(SUBSTRING(NOMBRE, 1, CHARINDEX('@', NOMBRE) -1) AS VARCHAR(100)) AS channel_name, -- 2. 
+    PARSENAME(REPLACE(Name, '@', '.'), 2) AS channel_name, 
     total_subscribers,
     total_views,
     total_videos
@@ -270,7 +270,7 @@ FROM
 
 ```
 
-![Row count check](assets/images/1._row_count_check.png)
+![Row count check](assets/images/1_row_count_check.png)
 
 
 
