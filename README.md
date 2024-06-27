@@ -483,11 +483,11 @@ Here are the key questions we need to answer for our marketing client:
 
 ### 4. Which 3 channels have the highest average views per video?
 
-| Channel Name | Averge Views per Video (M) |
-|--------------|----------------------------|
-| Cocomelon - Nursery Rhymes  | 153.55      |
-| Justin Bieber     | 131.06                |
-| Vlad and Niki     | 125.65                |
+| Rank | Channel Name | Averge Views per Video (M) |
+|------|--------------|----------------------------|
+|1     | Cocomelon - Nursery Rhymes  | 153.55      |
+|2     | Justin Bieber     | 131.06                |
+|3     | Vlad and Niki     | 125.65                |
 
 
 ### 5. Which 3 channels have the highest views per subscriber ratio?
@@ -510,7 +510,6 @@ Here are the key questions we need to answer for our marketing client:
 
 
 
-
 ### Notes
 
 For this analysis, we'll prioritize analysing the metrics that are important in generating the expected ROI for our marketing client, which are the YouTube channels wuth the most 
@@ -518,7 +517,6 @@ For this analysis, we'll prioritize analysing the metrics that are important in 
 - subscribers
 - total views
 - videos uploaded
-
 
 
 ## Validation 
@@ -529,34 +527,34 @@ For this analysis, we'll prioritize analysing the metrics that are important in 
 
 Campaign idea = product placement 
 
-1. NoCopyrightSounds 
-- Average views per video = 6.92 million
+1. MrBeast 
+- Average views per video = 6.59 million
 - Product cost = $5
-- Potential units sold per video = 6.92 million x 0.1% conversion rate = 138,400 units sold
-- Potential revenue per video = 138,400 x $5 = $692,000
+- Potential units sold per video = 6.59 million x 0.1% conversion rate =  65,900  units sold
+- Potential revenue per video = 65,900 x $5 = $329,500 
 - Campaign cost (one-time fee) = $50,000
-- **Net profit = $692,000 - $50,000 = $642,000**
+- **Net profit = $329,500 - $50,000 = $ 279,500**
 
-b. DanTDM
+b. T-Series
 
-- Average views per video = 5.34 million
+- Average views per video = 1.21 million
 - Product cost = $5
-- Potential units sold per video = 5.34 million x 2% conversion rate = 106,800 units sold
-- Potential revenue per video = 106,800 x $5 = $534,000
+- Potential units sold per video = 1.21 million x 0.1% conversion rate =  12,180 units sold
+- Potential revenue per video = 12,180 x $5 = $60,900
 - Campaign cost (one-time fee) = $50,000
-- **Net profit = $534,000 - $50,000 = $484,000**
+- **Net profit = $60,900 - $50,000 = $10,900**
 
-c. Dan Rhodes
+c. Cocomelon - Nursery Rhymes
 
-- Average views per video = 11.15 million
+- Average views per video = 153.55 million
 - Product cost = $5
-- Potential units sold per video = 11.15 million x 2% conversion rate = 223,000 units sold
-- Potential revenue per video = 223,000 x $5 = $1,115,000
+- Potential units sold per video = 153.55 million x 0.1% conversion rate =  153,550 units sold
+- Potential revenue per video = 153,550 x $5 = $767,750
 - Campaign cost (one-time fee) = $50,000
-- **Net profit = $1,115,000 - $50,000 = $1,065,000**
+- **Net profit = $767,750 - $50,000 = $717,750**
 
 
-Best option from category: Dan Rhodes
+Best option from category: **MrBeast**
 
 
 #### SQL query 
@@ -572,24 +570,22 @@ Best option from category: Dan Rhodes
 
 */
 
-
 -- 1. 
-DECLARE @conversionRate FLOAT = 0.02;		-- The conversion rate @ 2%
+DECLARE @conversionRate FLOAT = 0.001;		-- The conversion rate @ 0.1%
 DECLARE @productCost FLOAT = 5.0;			-- The product cost @ $5
 DECLARE @campaignCost FLOAT = 50000.0;		-- The campaign cost @ $50,000	
 
-
 -- 2.  
-WITH ChannelData AS (
+WITH ChannelData AS 
+(
     SELECT 
         channel_name,
         total_views,
         total_videos,
         ROUND((CAST(total_views AS FLOAT) / total_videos), -4) AS rounded_avg_views_per_video
     FROM 
-        youtube_db.dbo.view_uk_youtubers_2024
+        us_youtuber 
 )
-
 -- 3. 
 SELECT 
     channel_name,
@@ -600,16 +596,13 @@ SELECT
 FROM 
     ChannelData
 
-
 -- 4. 
 WHERE 
-    channel_name in ('NoCopyrightSounds', 'DanTDM', 'Dan Rhodes')    
-
+    channel_name in ('MrBeast', 'T-Series', 'Cocomelon - Nursery Rhymes')    
 
 -- 5.  
 ORDER BY
 	net_profit DESC
-
 ```
 
 #### Output
@@ -622,34 +615,34 @@ ORDER BY
 
 Campaign idea = sponsored video series  
 
-1. GRM Daily
+1. Zee TV
 - Average views per video = 510,000
 - Product cost = $5
-- Potential units sold per video = 510,000 x 2% conversion rate = 10,200 units sold
-- Potential revenue per video = 10,200 x $5= $51,000
-- Campaign cost (11-videos @ $5,000 each) = $55,000
-- **Net profit = $51,000 - $55,000 = -$4,000 (potential loss)**
+- Potential units sold per video = 510,000 x 0.1% conversion rate = 510 units sold
+- Potential revenue per video = 510 x $5= $2,550
+- Campaign cost (10-videos @ $5,000 each) = $50,000
+- **Net profit = $2,550 - $50,000 = -$-47450 (potential loss)**
 
-b. **Manchester City**
+b. Colors TV
 
-- Average views per video = 240,000
+- Average views per video = 460,000
 - Product cost = $5
-- Potential units sold per video = 240,000 x 2% conversion rate = 4,800 units sold
-- Potential revenue per video = 4,800 x $5= $24,000
-- Campaign cost (11-videos @ $5,000 each) = $55,000
-- **Net profit = $24,000 - $55,000 = -$31,000 (potential loss)**
+- Potential units sold per video = 460,000 x 0.1% conversion rate = 460 units sold
+- Potential revenue per video = 460 x $5= $2300
+- Campaign cost (10-videos @ $5,000 each) = $50,000
+- **Net profit = $2300 - $50,000 = -$-47700 (potential loss)**
 
-b. **Yogscast**
+b. SET India
 
-- Average views per video = 710,000
+- Average views per video = 1,180,000
 - Product cost = $5
-- Potential units sold per video = 710,000 x 2% conversion rate = 14,200 units sold
-- Potential revenue per video = 14,200 x $5= $71,000
-- Campaign cost (11-videos @ $5,000 each) = $55,000
-- **Net profit = $71,000 - $55,000 = $16,000 (profit)**
+- Potential units sold per video = 1,180,000 x 0.1% conversion rate = 1180 units sold
+- Potential revenue per video = 1180 x $5= $5,900
+- Campaign cost (10-videos @ $5,000 each) = $50,000
+- **Net profit = $5,900 - $50,000 = $44,100 (potential loss)**
 
 
-Best option from category: Yogscast
+Best option from category: **None of them**
 
 #### SQL query 
 ```sql
@@ -661,13 +654,11 @@ Best option from category: Yogscast
 # 5. Sort results by net profits (from highest to lowest)
 */
 
-
 -- 1.
-DECLARE @conversionRate FLOAT = 0.02;           -- The conversion rate @ 2%
+DECLARE @conversionRate FLOAT = 0.001;           -- The conversion rate @ 0.01%
 DECLARE @productCost FLOAT = 5.0;               -- The product cost @ $5
 DECLARE @campaignCostPerVideo FLOAT = 5000.0;   -- The campaign cost per video @ $5,000
-DECLARE @numberOfVideos INT = 11;               -- The number of videos (11)
-
+DECLARE @numberOfVideos INT = 10;               -- The number of videos (11)
 
 -- 2.
 WITH ChannelData AS (
@@ -677,9 +668,8 @@ WITH ChannelData AS (
         total_videos,
         ROUND((CAST(total_views AS FLOAT) / total_videos), -4) AS rounded_avg_views_per_video
     FROM
-        youtube_db.dbo.view_uk_youtubers_2024
+        us_youtuber 
 )
-
 
 -- 3.
 SELECT
@@ -691,11 +681,9 @@ SELECT
 FROM
     ChannelData
 
-
 -- 4.
 WHERE
-    channel_name IN ('GRM Daily', 'Man City', 'YOGSCAST Lewis & Simon ')
-
+    channel_name IN ('Zee TV', 'Colors TV', 'SET India')
 
 -- 5.
 ORDER BY
@@ -713,34 +701,34 @@ ORDER BY
 
 Campaign idea = Influencer marketing 
 
-a. DanTDM
+a. T-Series
 
-- Average views per video = 5.34 million
+- Average views per video = 12.18 million
 - Product cost = $5
-- Potential units sold per video = 5.34 million x 2% conversion rate = 106,800 units sold
-- Potential revenue per video = 106,800 x $5 = $534,000
+- Potential units sold per video = 12.18 million x 0.1% conversion rate = 12,180 units sold
+- Potential revenue per video = 12,180x $5 = $60,900
 - Campaign cost (3-month contract) = $130,000
-- **Net profit = $534,000 - $130,000 = $404,000**
+- **Net profit = $60,900 - $130,000 = -$69100**
 
-b. Dan Rhodes
+b. Cocomelon - Nursery Rhymes
 
-- Average views per video = 11.15 million
+- Average views per video = 153.5 million
 - Product cost = $5
-- Potential units sold per video = 11.15 million x 2% conversion rate = 223,000 units sold
-- Potential revenue per video = 223,000 x $5 = $1,115,000
+- Potential units sold per video = 153.5 million x 0.1% conversion rate = 153,550 units sold
+- Potential revenue per video = 153,550 x $5 = $767,750
 - Campaign cost (3-month contract) = $130,000
-- **Net profit = $1,115,000 - $130,000 = $985,000**
+- **Net profit = $767,750 - $130,000 = $637,750**
 
-c. Mister Max
+c. SET India
 
-- Average views per video = 14.06 million
+- Average views per video = 1.18 million
 - Product cost = $5
-- Potential units sold per video = 14.06 million x 2% conversion rate = 281,200 units sold
-- Potential revenue per video = 281,200 x $5 = $1,406,000
+- Potential units sold per video = 1.18 million x 0.1% conversion rate = 1,180 units sold
+- Potential revenue per video = 1,180 x $5 = $5,900
 - Campaign cost (3-month contract) = $130,000
-- **Net profit = $1,406,000 - $130,000 = $1,276,000**
+- **Net profit = $5,900 - $130,000 = -$124100**
 
-Best option from category: Mister Max
+Best option from category: **Cocomelon - Nursery Rhymes** 
 
 
 
@@ -755,12 +743,10 @@ Best option from category: Mister Max
 */
 
 
-
 -- 1.
-DECLARE @conversionRate FLOAT = 0.02;        -- The conversion rate @ 2%
+DECLARE @conversionRate FLOAT = 0.001;        -- The conversion rate @ 0.1%
 DECLARE @productCost MONEY = 5.0;            -- The product cost @ $5
 DECLARE @campaignCost MONEY = 130000.0;      -- The campaign cost @ $130,000
-
 
 
 -- 2.
@@ -771,9 +757,8 @@ WITH ChannelData AS (
         total_videos,
         ROUND(CAST(total_views AS FLOAT) / total_videos, -4) AS avg_views_per_video
     FROM
-        youtube_db.dbo.view_uk_youtubers_2024
+        us_youtuber 
 )
-
 
 -- 3.
 SELECT
@@ -785,22 +770,19 @@ SELECT
 FROM
     ChannelData
 
-
 -- 4.
 WHERE
-    channel_name IN ('Mister Max', 'DanTDM', 'Dan Rhodes')
+    channel_name IN ('T-Series', 'Cocomelon - Nursery Rhymes', 'SET India')
 
 
 -- 5.
 ORDER BY
     net_profit DESC;
-
 ```
 
 #### Output
 
 ![Most views](assets/images/youtubers_with_the_most_views.png)
-
 
 
 ## Discovery
@@ -810,11 +792,10 @@ ORDER BY
 We discovered that 
 
 
-1. NoCopyrightSOunds, Dan Rhodes and DanTDM are the channnels with the most subscribers in the UK
-2. GRM Daily, Man City and Yogscast are the channels with the most videos uploaded
-3. DanTDM, Dan RHodes and Mister Max are the channels with the most views
+1. MrBeast, T-series and Cocomelon - Nursery Rhymes are the channnels with the most subscribers in the United States
+2. Zee TV, Colors TV and SET India are the channels with the most videos uploaded
+3. T-Series, Cocomelon - Nursery Rhymes and SET India are the channels with the most views
 4. Entertainment channels are useful for broader reach, as the channels posting consistently on their platforms and generating the most engagement are focus on entertainment and music 
-
 
 
 
@@ -822,34 +803,32 @@ We discovered that
 
 - What do you recommend based on the insights gathered? 
   
-1. Dan Rhodes is the best YouTube channel to collaborate with if we want to maximize visbility because this channel has the most YouTube subscribers in the UK
-2. Although GRM Daily, Man City and Yogcasts are regular publishers on YouTube, it may be worth considering whether collaborating with them with the current budget caps are worth the effort, as the potential return on investments is significantly lower compared to the other channels.
-3. Mister Max is the best YouTuber to collaborate with if we're interested in maximizing reach, but collaborating with DanTDM and Dan Rhodes may be better long-term options considering the fact that they both have large subscriber bases and are averaging significantly high number of views.
-4. The top 3 channels to form collaborations with are NoCopyrightSounds, DanTDM and Dan Rhodes based on this analysis, because they attract the most engagement on their channels consistently.
+1. MrBeast is the best YouTube channel to collaborate with if we want to maximize visbility because this channel has the most YouTube subscribers in the United States
+2. Although T-Series, Cocomelon - Nursery Rhymes and SET India are regular publishers on YouTube, it may be worth considering whether collaborating with them with the current budget caps are worth the effort, as the potential return on investments is significantly lower compared to the other channels.
+3. T-Series is the best YouTuber to collaborate with if we're interested in maximizing reach, but collaborating with MrBeast may be better long-term options considering the fact that they both have large subscriber bases and are averaging significantly high number of views.
+4. The top 3 channels to form collaborations with are MrBeast, T-series and Cocomelon - Nursery Rhymes based on this analysis, because they attract the most engagement on their channels consistently.
 
 
 ### Potential ROI 
 - What ROI do we expect if we take this course of action?
 
-1. Setting up a collaboration deal with Dan Rhodes would make the client a net profit of $1,065,000 per video
-2. An influencer marketing contract with Mister Max can see the client generate a net profit of $1,276,000
-3. If we go with a product placement campaign with DanTDM, this could  generate the client approximately $484,000 per video. If we advance with an influencer marketing campaign deal instead, this would make the client a one-off net profit of $404,000.
-4. NoCopyrightSounds could profit the client $642,000 per video too (which is worth considering) 
-
+1. Setting up a collaboration deal with MrBeast would make the client a net profit of $279,500 per video
+2. An influencer marketing contract with Cocomelon - Nursery Rhymes can see the client generate a net profit of $637,750 but not recommended, since its a kids channel 
+3. If we go with a product placement campaign with any of the selected youtubers it will lead into no net profit. 
 
 
 
 ### Action plan
 - What course of action should we take and why?
 
-Based on our analysis, we beieve the best channel to advance a long-term partnership deal with to promote the client's products is the Dan Rhodes channel. 
+Based on our analysis, we beieve the best channel to advance a long-term partnership deal with to promote the client's products is the MrBeast channel. 
 
-We'll have conversations with the marketing client to forecast what they also expect from this collaboration. Once we observe we're hitting the expected milestones, we'll advance with potential partnerships with DanTDM, Mister Max and NoCopyrightSounds channels in the future.   
+We'll have conversations with the marketing client to forecast what they also expect from this collaboration. Once we observe we're hitting the expected milestones, we'll advance with potential partnerships with Cocomelon - Nursery Rhymes and T-Series in the future.   
 
 - What steps do we take to implement the recommended decisions effectively?
 
 
-1. Reach out to the teams behind each of these channels, starting with Dan Rhodes
+1. Reach out to the teams behind each of these channels, starting with MrBeast
 2. Negotiate contracts within the budgets allocated to each marketing campaign
 3. Kick off the campaigns and track each of their performances against the KPIs
 4. Review how the campaigns have gone, gather insights and optimize based on feedback from converted customers and each channel's audiences 
