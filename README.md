@@ -46,7 +46,7 @@ The Head of Marketing wants to find out who the top YouTubers are in 2024 to dec
 
 - What is the ideal solution? 
 
-To create a dashboard that provides insights into the top UK YouTubers in 2024 that includes their 
+To create a dashboard that provides insights into the top US YouTubers in 2024 that includes their 
 - subscriber count
 - total views
 - total videos, and
@@ -221,7 +221,7 @@ SELECT
     total_videos
 
 FROM
-    top_uk_youtubers_2024
+    top_us_youtubers
 ```
 
 
@@ -350,7 +350,7 @@ HAVING
 
 ![GIF of Power BI Dashboard](assets/images/top_uk_youtubers_2024.gif)
 
-This shows the Top UK Youtubers in 2024 so far. 
+This shows the Top US Youtubers in 2024 so far. 
 
 
 ## DAX Measures
@@ -444,56 +444,59 @@ Here are the key questions we need to answer for our marketing client:
 
 ### 1. Who are the top 10 YouTubers with the most subscribers?
 
-| Rank | Channel Name         | Subscribers (M) |
-|------|----------------------|-----------------|
-| 1    | NoCopyrightSounds    | 33.60           |
-| 2    | DanTDM               | 28.60           |
-| 3    | Dan Rhodes           | 26.50           |
-| 4    | Miss Katy            | 24.50           |
-| 5    | Mister Max           | 24.40           |
-| 6    | KSI                  | 24.10           |
-| 7    | Jelly                | 23.50           |
-| 8    | Dua Lipa             | 23.30           |
-| 9    | Sidemen              | 21.00           |
-| 10   | Ali-A                | 18.90           |
+| Rank | Channel                  | Subscribers      |
+|------|--------------------------|------------------|
+| 1    | MrBeast                  | 289,000,000      |
+| 2    | T-Series                 | 268,000,000      |
+| 3    | Cocomelon - Nursery Rhymes | 177,000,000      |
+| 4    | SET India                | 174,000,000      |
+| 5    | ✿ Kids Diana Show        | 123,000,000      |
+| 6    | Vlad and Niki            | 120,000,000      |
+| 7    | Like Nastya              | 116,000,000      |
+| 8    | PewDiePie                | 111,000,000      |
+| 9    | Zee Music Company        | 108,000,000      |
+| 10   | WWE                      | 102,000,000      |
+
 
 
 ### 2. Which 3 channels have uploaded the most videos?
 
-| Rank | Channel Name    | Videos Uploaded |
-|------|-----------------|-----------------|
-| 1    | GRM Daily       | 14,696          |
-| 2    | Manchester City | 8,248           |
-| 3    | Yogscast        | 6,435           |
+| Rank | Channel     | Videos |
+|------|-------------|--------------|
+| 1    | Zee TV      | 178,069      |
+| 2    | Colors TV   | 154,024      |
+| 3    | SET India   | 140,014      |
+
 
 
 
 ### 3. Which 3 channels have the most views?
 
 
-| Rank | Channel Name | Total Views (B) |
-|------|--------------|-----------------|
-| 1    | DanTDM       | 19.78           |
-| 2    | Dan Rhodes   | 18.56           |
-| 3    | Mister Max   | 15.97           |
+| Rank | Channel                  | Views            |
+|------|--------------------------|------------------|
+| 1    | T-Series                 | 258,896,707,763  |
+| 2    | Cocomelon - Nursery Rhymes | 182,880,824,642  |
+| 3    | SET India                | 165,576,494,578  |
+
 
 
 ### 4. Which 3 channels have the highest average views per video?
 
 | Channel Name | Averge Views per Video (M) |
-|--------------|-----------------|
-| Mark Ronson  | 32.27           |
-| Jessie J     | 5.97            |
-| Dua Lipa     | 5.76            |
+|--------------|----------------------------|
+| Cocomelon - Nursery Rhymes  | 153.55      |
+| Justin Bieber     | 131.06                |
+| Vlad and Niki     | 125.65                |
 
 
 ### 5. Which 3 channels have the highest views per subscriber ratio?
 
 | Rank | Channel Name       | Views per Subscriber        |
 |------|-----------------   |---------------------------- |
-| 1    | GRM Daily          | 1185.79                     |
-| 2    | Nickelodeon        | 1061.04                     |
-| 3    | Disney Junior UK   | 1031.97                     |
+| 1    | Sony SAB           | 1246.57                     |
+| 2    | Zee TV             | 1108.62                     |
+| 3    | Cocomelon - Nursery Rhymes   | 1033.22           |
 
 
 
@@ -501,9 +504,9 @@ Here are the key questions we need to answer for our marketing client:
 
 | Rank | Channel Name    | Subscriber Engagement Rate  |
 |------|-----------------|---------------------------- |
-| 1    | Mark Ronson     | 343,000                     |
-| 2    | Jessie J        | 110,416.67                  |
-| 3    | Dua Lipa        | 104,954.95                  |
+| 1    | MrBeast         | 359900.37                   |
+| 2    | Justin Bieber   | 293574.29                   |
+| 3    | Vlad and Niki   | 164383.56                   |
 
 
 
@@ -529,7 +532,7 @@ Campaign idea = product placement
 1. NoCopyrightSounds 
 - Average views per video = 6.92 million
 - Product cost = $5
-- Potential units sold per video = 6.92 million x 2% conversion rate = 138,400 units sold
+- Potential units sold per video = 6.92 million x 0.1% conversion rate = 138,400 units sold
 - Potential revenue per video = 138,400 x $5 = $692,000
 - Campaign cost (one-time fee) = $50,000
 - **Net profit = $692,000 - $50,000 = $642,000**
